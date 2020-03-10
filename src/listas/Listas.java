@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  *
@@ -123,7 +128,49 @@ public class Listas {
         // Para averiguar si la lista esta vacia (devuelve true si esta vacia, o false si tiene algo)
         System.out.println("La lista esta vacia: " + listaPalabras.isEmpty());
         
+    }
+    
+    public void pruebaSet() {
+        // Las colecciones de Set, no tienen porqué tener los datos ordenados
+        /* 
+            La principal ventaja de los Set, es que si tratas de introducir
+            un dato que ya existe, este lo ignorará y no lo volvera a introducir
+        */
+        // Existen dos formas de declararlo principalmente
+        // HashSet simplemente mantendra todos los datos, y los mantendra ordenados segun le convenga
+        Set<String> prueba = new HashSet<>();
         
+        //LinkedHashSet tratara de que mantengan la posicion segun los introduces
+        Set<String> prueba2 = new LinkedHashSet<>();
+        
+        // Para tener Set siempre ordenados (clase TreeSet), usamos:
+        /* 
+            Set TreeSet tratara de mantener ordenados los datos introducidos
+            pero ordenados alfabeticamente o de menor a mayor
+            (Segun tabla ASCII principalmente)
+        */
+        Set<String> prueba3 = new TreeSet<>();
+        //Preferible para que este ordenado en caso de que lo quieras
+        
+        /*
+            Es más exhaustivo que el anterior, tambien los mantendra ordenados
+            en estructura de arbol
+        */
+        SortedSet<String> prueba4 = new TreeSet<>();
+        
+        // Principalmente tiene los mismos metodos que una lista, 
+        // por tanto se pueden recorrer de forma igual o parecida
+        // Los datos no tienen porque ir ordenados cuando tratas de imprimirlos
+        
+        prueba3.add("Hola");
+        prueba3.add("Adios");
+        prueba3.add("que haces");
+        prueba3.add("que hola");
+        prueba3.add("bye");
+        prueba3.add("bye");
+        prueba3.add("bye");
+        prueba3.add("bye");
+        System.out.println(prueba3);
     }
     
     public void run() {
@@ -134,12 +181,17 @@ public class Listas {
         //pruebaArrays();
         
         //Pruebas con listas
-        pruebaListas();
+        //pruebaListas();
+        
+        //Pruebas con Set
+        pruebaSet();
     }
     
     public static void main(String[] args) {
         // TODO code application logic here
         new Listas().run();
     }
+
+    
     
 }
