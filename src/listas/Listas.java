@@ -5,15 +5,19 @@
  */
 package listas;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.Iterator;
 
 /**
  *
@@ -128,6 +132,20 @@ public class Listas {
         // Para averiguar si la lista esta vacia (devuelve true si esta vacia, o false si tiene algo)
         System.out.println("La lista esta vacia: " + listaPalabras.isEmpty());
         
+        System.out.println("-----------------------------------------");
+        
+        // Para clonar una lista (ArrayList tiene su propio metodo para clonar)
+        ArrayList<String> nuevaListaPalabras = new ArrayList<>();
+        nuevaListaPalabras.add("Hola");
+        nuevaListaPalabras.add("Adios");
+        nuevaListaPalabras.add("Que hay");
+        nuevaListaPalabras.add("¿Eres nuevo por aqui?");
+        System.out.println(nuevaListaPalabras);
+        
+        // Creamos una lista y clonamos la lista anterior
+        ArrayList<String> clon = (ArrayList<String>)nuevaListaPalabras.clone();
+        System.out.println(clon);
+        
     }
     
     public void pruebaSet() {
@@ -173,6 +191,203 @@ public class Listas {
         System.out.println(prueba3);
     }
     
+    public void imprimirListaMap(Map<String, Integer> lista) {
+        for (String s : lista.keySet()) {
+            System.out.println(s);
+        }
+    }
+    
+    public void pruebaMap() {
+        /*
+            Los maps se dividen en dos aspectos, tienen una clave y un valor.
+            La clave siempre será unica, en caso de usar una clave ya existente,
+            se reemplazara el valor que ya existia por el nuevo valor.
+            Al igual que los Set, los Maps no tienen porque mantener los valores
+            ordenados segun tu conveniencia
+        */
+        /*
+            Haremos un ejemplo con ciudades y cantidadde habitantes (por 
+            supuesto será un simple ejemplo, por lo que no seran valores reales)
+        */
+        Map<String, Integer> ciudad = new HashMap<>();
+        
+        // Para insertar datos
+        ciudad.put("Madrid", 1000);
+        ciudad.put("Madrid", 10000000);
+        ciudad.put("Barcelona", 5000);
+        
+        // Para ver los valores
+        
+        for (int i : ciudad.values()) {
+            System.out.println(i);
+        }
+        System.out.println("-----------------------------------------");
+        
+        // Para ver las keys
+        
+        for (String s : ciudad.keySet()) {
+            System.out.println(s);
+        }
+        System.out.println("-----------------------------------------");
+        
+        // Para ver clave - valor
+        
+        for (String s : ciudad.keySet()) {
+            System.out.format("La ciudad de %s tiene %d habitantes%n", s, ciudad.get(s));
+        }
+        System.out.println("-----------------------------------------");
+        
+        // Para obtener un valor en especifico
+        
+        System.out.println(ciudad.get("Madrid"));
+        System.out.println(ciudad.get("Barcelona"));
+        
+        System.out.println("-----------------------------------------");
+        
+        // Para comprobar el tamaño del map
+        System.out.println(ciudad.size());
+        System.out.println("-----------------------------------------");
+        
+        // Para eliminar un elemento de un map (a partir de su key)
+        ciudad.remove("Barcelona");
+        imprimirListaMap(ciudad);
+        
+        System.out.println("-----------------------------------------");
+        
+        // Para saber si existe un elemento dentro de un map (true si esta, false si no esta)
+        System.out.println(ciudad.containsKey("Madrid"));
+        System.out.println(ciudad.containsKey("Barcelona"));
+        
+        System.out.println("-----------------------------------------");
+        
+        // Para saber si existe un valor
+        System.out.println(ciudad.containsValue(1000));
+        System.out.println(ciudad.containsValue(10000000));
+        System.out.println("-----------------------------------------");
+        
+        // Para saber si el map está vacio (true si esta vacio, false si no lo esta)
+        
+        System.out.println(ciudad.isEmpty());
+        
+        // Para vaciar el map y dejarlo sin elementos
+        ciudad.put("Madrid", 10000000);
+        ciudad.put("Barcelona", 5000);
+        System.out.println(ciudad);
+        
+        // Lo vaciamos
+        ciudad.clear();
+        System.out.println(ciudad);
+        System.out.println("-----------------------------------------");
+        
+        // Para tener siempre un map ordenado (segun la tabla ASCII)
+        
+        Map<String, Double> listaCiudades = new TreeMap<>();
+        listaCiudades.put("Madrid", 10000.0);
+        listaCiudades.put("Barcelona", 15000.0);
+        listaCiudades.put("Valencia", 20000.0);
+        listaCiudades.put("Galicia", 7000.0);
+        System.out.println(listaCiudades);
+        
+    }
+    
+    public void pruebaIterator() {
+        /*
+            Los iteradores son practicamente iguales que los bucles for-each,
+            sin embargo, estos son muy buenos para hacer borrados mientras
+            hacemos recorridos, mientras que los for-each simplemente nos
+            sirven para leer lo que posee esa zona de codigo
+        */
+        
+        // Ejemplo con listas (tambien valdria con Set)
+        
+        List<String> lista = new ArrayList<>();
+        lista.add("Andres");
+        lista.add("Marcos");
+        lista.add("Lucia");
+        lista.add("Sandra");
+        
+        // Hacemos una iteracion simplemente para ver su contenido
+        // Lo declaramos
+        Iterator<String> iter = lista.iterator();
+        // Lo recorremos
+        while (iter.hasNext()) {
+            /* 
+                En caso de que vayamos a hacer varias operaciones con el mismo
+                operador, será necesario guardarlo en una variable, ya que si
+                vamos declarando varias veces el iter.next, irá pasando al
+                siguiente valor.
+            */
+            String nombre = iter.next();
+            System.out.println(nombre);
+        }
+        System.out.println("-----------------------------------------");
+        // Hacemos un borrado, el cual llevara una condicion
+        // Como queremos volver a iterar sobre la misma lista, deberemos
+        // de volver a declararlo
+        iter = lista.iterator();
+        
+        while (iter.hasNext()) {
+            String nombre = iter.next();
+            if (nombre.equals("Marcos")) {
+                // .remove eliminará el ultimo elemento que hayamos obtenido
+                // con .next
+                iter.remove();
+            }
+        }
+        System.out.println(lista);
+        System.out.println("-----------------------------------------");
+        
+        // Ejemplos con Maps
+
+        Map<String, Integer> listaCiudades = new TreeMap<>();
+        listaCiudades.put("Madrid", 10000);
+        listaCiudades.put("Barcelona", 15000);
+        listaCiudades.put("Valencia", 20000);
+        listaCiudades.put("Galicia", 7000);
+        System.out.println(listaCiudades);
+        
+        // Iteramos sobre las claves
+        Iterator<String> iterMap = listaCiudades.keySet().iterator();
+        
+        while (iterMap.hasNext()) {
+            String ciudad = iterMap.next();
+            System.out.format("La ciudad de %s tiene %d habitantes %n", 
+                    ciudad, listaCiudades.get(ciudad));
+        }
+        System.out.println();
+        // Iteramos sobre los valores
+        Iterator<Integer> iterMap2 = listaCiudades.values().iterator();
+        
+        while (iterMap2.hasNext()) {
+            Integer i = iterMap2.next();
+            System.out.println(i);
+        }
+        System.out.println("-----------------------------------------");
+        
+        // Probamos a hacer borrados con ambos casos
+        // Sobre claves
+        System.out.println(listaCiudades);
+        iterMap = listaCiudades.keySet().iterator();
+        while (iterMap.hasNext()) {
+            String ciudad = iterMap.next();
+            if (ciudad.equals("Galicia")){
+                iterMap.remove();
+            }
+        }
+        System.out.println(listaCiudades);
+        System.out.println();
+        
+        // Sobre valores
+        iterMap2 = listaCiudades.values().iterator();
+        while (iterMap2.hasNext()) {
+            Integer i = iterMap2.next();
+            if (i == 20000) {
+                iterMap2.remove();
+            }
+        }
+        System.out.println(listaCiudades);
+    }
+    
     public void run() {
         // Puedes ir comentando aqui los metodos dependiendo de lo que quieras ver funcionar
         in = new Scanner(System.in);
@@ -184,7 +399,13 @@ public class Listas {
         //pruebaListas();
         
         //Pruebas con Set
-        pruebaSet();
+        //pruebaSet();
+        
+        //Pruebas con Maps
+        //pruebaMap();
+        
+        //Pruebas Iteradores
+        pruebaIterator();
     }
     
     public static void main(String[] args) {
