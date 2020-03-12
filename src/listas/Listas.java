@@ -49,15 +49,16 @@ public class Listas {
         // Con palabras que se reciban por teclado
         String[] palabras = new String[4];
         for (int i = 0; i < palabras.length; i++){
-            // System.out.println("Dime " + palabras.length + " palabras (" + (i + 1) + "/4)");
+            // System.out.println("Dime " + palabras.length + " palabras (Palabra " + (i + 1) + "/4)");
             /*
                 %s --> para String
                 %d --> para int
                 %f --> para doubles
                 %.2f --> para definir la cantidad de decimales que nos muestra
                 %b --> para boolean
+                %n --> para saltar de linea
             */
-            System.out.format("Dime %d palabras (%d/%.2f)%n", 
+            System.out.format("Dime %d palabras (Palabra %d/%.2f)%n", 
                     palabras.length, i + 1, palabras.length + 0.0);
             palabras[i] = in.nextLine();
         }
@@ -179,11 +180,14 @@ public class Listas {
         // Principalmente tiene los mismos metodos que una lista, 
         // por tanto se pueden recorrer de forma igual o parecida
         // Los datos no tienen porque ir ordenados cuando tratas de imprimirlos
-        
+        /* 
+            Puedes cambiar aqui entre prueba, prueba2, prueba3 y prueba 4 para 
+            ir viendo el funcionamiento de cada uno
+        */
         prueba3.add("Hola");
         prueba3.add("Adios");
         prueba3.add("que haces");
-        prueba3.add("que hola");
+        prueba3.add("que hay");
         prueba3.add("bye");
         prueba3.add("bye");
         prueba3.add("bye");
@@ -206,7 +210,7 @@ public class Listas {
             ordenados segun tu conveniencia
         */
         /*
-            Haremos un ejemplo con ciudades y cantidadde habitantes (por 
+            Haremos un ejemplo con ciudades y cantidad de habitantes (por 
             supuesto será un simple ejemplo, por lo que no seran valores reales)
         */
         Map<String, Integer> ciudad = new HashMap<>();
@@ -388,6 +392,10 @@ public class Listas {
         System.out.println(listaCiudades);
     }
     
+    public void pruebaColas() {
+        
+    }
+    
     public void run() {
         // Puedes ir comentando aqui los metodos dependiendo de lo que quieras ver funcionar
         in = new Scanner(System.in);
@@ -405,7 +413,10 @@ public class Listas {
         //pruebaMap();
         
         //Pruebas Iteradores
-        pruebaIterator();
+        //pruebaIterator();
+        
+        //Pruebas Pilas
+        pruebaColas();
     }
     
     public static void main(String[] args) {
