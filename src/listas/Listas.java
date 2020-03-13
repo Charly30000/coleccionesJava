@@ -468,6 +468,20 @@ public class Listas {
             La clase PriorityQueue implementa una cola de prioridad, e implementa la interface Queue
         */
         
+        /*
+            Formas de tratarlo:
+                            Throws exception        Returns special value
+            Insertar	add(e)                  offer(e)
+            Eliminar	remove()                poll()
+            Examinar	element()               peek()
+
+            Los catalogados como Throws exception lanzaran una excepcion 
+            sí al eliminar o examinar la cola está vacía
+
+            Los catalogados como Return special value devuelven null 
+            al intentar eliminar o examinar si la cola está vacía
+        */
+        
         // Declaracion
         // De menor a mayor
         Queue<String> colaPrioridad = new PriorityQueue<>();
