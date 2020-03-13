@@ -402,7 +402,7 @@ public class Listas {
         /*
             Una cola tiene una estructura de comportambiento FIFO
             (First Input, First Output), es decir, lo primero que metas
-            aqui, será lo primero que salga, al igual que cuando comes :D
+            aqui, será lo primero que salga
         */
         /*
             Las principales operaciones que se pueden hacer son:
