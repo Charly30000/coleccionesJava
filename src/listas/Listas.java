@@ -497,14 +497,17 @@ public class Listas {
         colaPrioridad.add("Zeldris");
         colaPrioridad.add("Bonencio");
         
-        System.out.println(colaPrioridad.element());
-        colaPrioridad.remove();
-        System.out.println(colaPrioridad.element());
-        colaPrioridad.remove();
-        System.out.println(colaPrioridad.element());
-        colaPrioridad.remove();
-        System.out.println(colaPrioridad.element());
-        colaPrioridad.remove();
+        /*
+            Para recorrerlo con un bucle for normal, obtener primero
+            el tamaño de la cola antes de iniciar el bucle, sino el tamaño
+            ira cambiando y hará que no se impriman todos los elementos
+        */
+        
+        int tamannoColaPrioridad = colaPrioridad.size();
+        for (int i = 0; i < tamannoColaPrioridad; i++){
+            System.out.println(colaPrioridad.element());
+            colaPrioridad.remove();
+        }
         
         System.out.println();
         colaPrioridadAlReves.add("Andres");
@@ -512,21 +515,11 @@ public class Listas {
         colaPrioridadAlReves.add("Zeldris");
         colaPrioridadAlReves.add("Bonencio");
         
-        System.out.println(colaPrioridadAlReves.poll());
-        colaPrioridadAlReves.peek();
-        System.out.println(colaPrioridadAlReves.poll());
-        colaPrioridadAlReves.peek();
-        System.out.println(colaPrioridadAlReves.poll());
-        colaPrioridadAlReves.peek();
-        System.out.println(colaPrioridadAlReves.poll());
-        colaPrioridadAlReves.peek();
-        System.out.println(colaPrioridadAlReves.poll());
-        colaPrioridadAlReves.peek();
-        
-        // Para obtener el tamaño de la cola de prioridad
-        System.out.println();
-        System.out.println("Tamaño de la cola de prioridad:");
-        System.out.println(colaPrioridad.size());
+        int tamannoColaPrioridadAlReves = colaPrioridadAlReves.size();
+        for (int i = 0; i < tamannoColaPrioridadAlReves; i++) {
+            System.out.println(colaPrioridadAlReves.poll());
+            colaPrioridadAlReves.peek();
+        }
     }
     
     public void run() {
