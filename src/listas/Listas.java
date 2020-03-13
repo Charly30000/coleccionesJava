@@ -23,6 +23,7 @@ import java.util.LinkedList;
 import java.util.ArrayDeque;
 import java.util.PriorityQueue;
 import java.util.Collections;
+import java.util.Deque;
 
 /**
  *
@@ -503,6 +504,11 @@ public class Listas {
             ira cambiando y hará que no se impriman todos los elementos
         */
         
+        /*
+            De manera personal, no recomiendo utilizar bucle for-each
+            ni iteradores, debido a que puede devolver los datos desordenados
+        */
+        
         int tamannoColaPrioridad = colaPrioridad.size();
         for (int i = 0; i < tamannoColaPrioridad; i++){
             System.out.println(colaPrioridad.element());
@@ -519,6 +525,62 @@ public class Listas {
         for (int i = 0; i < tamannoColaPrioridadAlReves; i++) {
             System.out.println(colaPrioridadAlReves.poll());
             colaPrioridadAlReves.peek();
+        }
+    }
+    
+    public void pruebaPilas() {
+        /*
+            La pila es una estructura LIFO (Last Input First Output), 
+            en el que los elementos van saliendo en el orden contrario 
+            al que fueron entrando.
+            Es decir, el ultimo que entra, es el primero que sale
+        */
+        
+        // Declaracion
+        Deque<String> pila = new ArrayDeque<>();
+        Deque<String> pila2 = new LinkedList<>();
+        
+        /*
+            Existen metodos en este tipo de colecciones que permiten manipular
+            la pila tanto desde el comienzo como desde el final.
+            Al igual que en las colas, en la siguiente tabla habra columnas
+            que expliquen cuales lanzan excepciones, y cuales retornan un null
+        */
+        
+        /*
+                            First Element (Head)      |          Last Element (Tail)
+                    Throws exception    Special value |  Throws exception    Special value
+        Insert      addFirst(e)         offerFirst(e) |  addLast(e)          offerLast(e)
+        Remove      removeFirst()       pollFirst()   |  removeLast()        pollLast()
+        Examine     getFirst()          peekFirst()   |  getLast()           peekLast()
+
+        */
+        
+        // Ejemplo desde el primer elemento
+        
+        pila.addFirst("Patatas");
+        pila.offerFirst("Zanahorias");
+        pila.addFirst("Lechugas");
+        pila.offerFirst("Tomates");
+        System.out.println(pila);
+        
+        int tamannoPila = pila.size();
+        for (int i = 0; i < tamannoPila; i++) {
+            System.out.println(pila.getFirst());
+            pila.removeFirst();
+        }
+        //--------------------------------------------------------------------------
+        System.out.println();
+        pila2.addLast("Patatas");
+        pila2.offerLast("Zanahorias");
+        pila2.addLast("Lechugas");
+        pila2.offerLast("Tomates");
+        System.out.println(pila2);
+        
+        int tamannoPila2 = pila2.size();
+        for (int i = 0; i < tamannoPila2; i++) {
+            System.out.println(pila2.peekLast());
+            pila2.pollLast();
         }
     }
     
@@ -544,8 +606,11 @@ public class Listas {
         //Pruebas Colas
         //pruebaColas();
         
-        //Prueba colas de prioridad
-        pruebaColasPrioridad();
+        //Pruebas colas de prioridad
+        //pruebaColasPrioridad();
+        
+        //Pruebas Pilas
+        pruebaPilas();
     }
     
     public static void main(String[] args) {
