@@ -18,6 +18,11 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.Iterator;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.PriorityQueue;
+import java.util.Collections;
 
 /**
  *
@@ -393,7 +398,135 @@ public class Listas {
     }
     
     public void pruebaColas() {
+        /*
+            Una cola tiene una estructura de comportambiento FIFO
+            (First Input, First Output), es decir, lo primero que metas
+            aqui, será lo primero que salga, al igual que cuando comes :D
+        */
+        /*
+            Las principales operaciones que se pueden hacer son:
+            añadir un elemento, eliminar el elemento de la cola para procesarlo
+            y examinar cual es el siguiente elemento de la cola sin quitarlo
+        */
+        /*
+        Formas de tratarlo:
+                        Throws exception        Returns special value
+        Insertar	add(e)                  offer(e)
+        Eliminar	remove()                poll()
+        Examinar	element()               peek()
         
+        Los catalogados como Throws exception lanzaran una excepcion 
+        sí al eliminar o examinar la cola está vacía
+        
+        Los catalogados como Return special value devuelven null 
+        al intentar eliminar o examinar si la cola está vacía
+        */
+        
+        // Declaracion
+        
+        Queue<String> cola = new LinkedList<>();
+        Queue<String> cola2 = new ArrayDeque<>(); // Es una version más eficiente para colas o pilas
+        
+        cola2.add("Andres");
+        cola2.add("Marcos");
+        cola2.add("Sandra");
+        cola2.add("Sofia");
+        System.out.println(cola2); // Los veras introducidos por orden
+        cola2.offer("Angel");
+        System.out.println(cola2);
+        //---------------------------------------------------------------------------------
+        System.out.println();
+        System.out.println("Probamos a eliminar un elemento (notaras que es el primero):");
+        cola2.remove();
+        System.out.println(cola2);
+        cola2.poll();
+        System.out.println(cola2);
+        //---------------------------------------------------------------------------------
+        System.out.println();
+        System.out.println("Probamos a examinar un elemento");
+        System.out.println(cola2.element());
+        System.out.println(cola2.peek()); // Siempre sera el mismo elemento porque no lo borramos de la lista
+        //---------------------------------------------------------------------------------
+        System.out.println();
+        System.out.println("Tambien podemos recorrerlos con un bucle, pero no es para lo que se suele usar");
+        
+        // El iterador de las colas atraviesa los elementos sin ningún orden concreto
+        for (String s : cola2) { // Esto no es un iterador
+            System.out.println(s);
+        }
+        
+        // Para obtener el tamaño de la cola
+        System.out.println();
+        System.out.println("Tamaño de la cola:");
+        System.out.println(cola2.size());
+    }
+    
+    public void pruebaColasPrioridad() {
+        /*
+            Una cola de prioridad es una cola en la que el elemento que sale es el menor.
+            La clase PriorityQueue implementa una cola de prioridad, e implementa la interface Queue
+        */
+        
+        // Declaracion
+        // De menor a mayor
+        Queue<String> colaPrioridad = new PriorityQueue<>();
+        
+        /*
+        En una cola de prioridad se pueden tener elementos duplicados, 
+        o equivalentes, pero no el valor null.
+        
+        El iterador de una cola de prioridad atravesará los elementos 
+        sin ningún orden concreto: la cola de prioridad no tiene 
+        por qué tener los elementos en orden: tan solo garantiza que saldrá el menor.
+        
+        Las colas de prioridad pueden inicializarse para dar sacar el mayor, 
+        en lugar del menor, proporcionando un comparador a tal efecto que está 
+        en la clase collections al constructor.
+        */
+        /*
+            **************IMPORTANTE*****************
+            Recordar el orden mediante la tabla ASCII
+            *****************************************
+        */
+        // Declaracion colaPrioridad al reves
+        // De mayor a menor
+        Queue<String> colaPrioridadAlReves = new PriorityQueue<>(Collections.reverseOrder()); 
+        
+        colaPrioridad.add("Andres");
+        colaPrioridad.add("Valentin");
+        colaPrioridad.add("Zeldris");
+        colaPrioridad.add("Bonencio");
+        
+        System.out.println(colaPrioridad.element());
+        colaPrioridad.remove();
+        System.out.println(colaPrioridad.element());
+        colaPrioridad.remove();
+        System.out.println(colaPrioridad.element());
+        colaPrioridad.remove();
+        System.out.println(colaPrioridad.element());
+        colaPrioridad.remove();
+        
+        System.out.println();
+        colaPrioridadAlReves.add("Andres");
+        colaPrioridadAlReves.add("Valentin");
+        colaPrioridadAlReves.add("Zeldris");
+        colaPrioridadAlReves.add("Bonencio");
+        
+        System.out.println(colaPrioridadAlReves.poll());
+        colaPrioridadAlReves.peek();
+        System.out.println(colaPrioridadAlReves.poll());
+        colaPrioridadAlReves.peek();
+        System.out.println(colaPrioridadAlReves.poll());
+        colaPrioridadAlReves.peek();
+        System.out.println(colaPrioridadAlReves.poll());
+        colaPrioridadAlReves.peek();
+        System.out.println(colaPrioridadAlReves.poll());
+        colaPrioridadAlReves.peek();
+        
+        // Para obtener el tamaño de la cola de prioridad
+        System.out.println();
+        System.out.println("Tamaño de la cola de prioridad:");
+        System.out.println(colaPrioridad.size());
     }
     
     public void run() {
@@ -415,8 +548,11 @@ public class Listas {
         //Pruebas Iteradores
         //pruebaIterator();
         
-        //Pruebas Pilas
-        pruebaColas();
+        //Pruebas Colas
+        //pruebaColas();
+        
+        //Prueba colas de prioridad
+        pruebaColasPrioridad();
     }
     
     public static void main(String[] args) {
