@@ -238,7 +238,12 @@ public class Listas {
         System.out.println();
         
         // Los ordenamos
-        
+        /*
+            Al ejecutar el Collections.sort, debido a que nosotros dentro del
+            propio objeto hemos definido como se hará la ordenacion en el caso
+            de que queramos ordenar una lista, ejecutará automaticamente el metodo
+            compareTo (el cual dice como se hara este orden)
+        */
         Collections.sort(listaPokemon);
         for (Pokemon p : listaPokemon) {
             System.out.format("El pokemon %s tiene nivel %d%n", p.getNombre(), p.getNivel());
