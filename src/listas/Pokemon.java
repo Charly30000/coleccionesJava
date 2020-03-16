@@ -29,7 +29,6 @@ public class Pokemon implements Comparable<Pokemon> {
     // En el caso de querer ordenar por el nivel
     @Override
     public int compareTo(Pokemon o) {
-        // Este metodo hara que se ordenen por el nombre
         return new Integer(this.getNivel()).compareTo(o.getNivel());
     }
 */
