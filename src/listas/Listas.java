@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -152,6 +153,98 @@ public class Listas {
         // Creamos una lista y clonamos la lista anterior
         ArrayList<String> clon = (ArrayList<String>)nuevaListaPalabras.clone();
         System.out.println(clon);
+        
+        System.out.println("-----------------------------------------");
+        
+        // Para ordenar una lista (Tabla ASCII)
+        
+        Collections.sort(clon);
+        System.out.println(clon);
+        
+        System.out.println("-----------------------------------------");
+        
+        // Caso más avanzado con objetos
+        /*
+            En el caso de que queramos ordenar objetos a partir de un valor determinado
+            lo realizaremos de la siguiente forma
+        */
+        
+        // En primer lugar creamos un objeto Persona
+        
+        // Añadimos unas cuantas personas
+        List<Persona> listaPersonas = new ArrayList<>();
+        /*ArrayList<Persona> listaPersonas = new ArrayList<>();//Ambos funcionan igual*/
+        listaPersonas.add(new Persona("Andres", 23));
+        listaPersonas.add(new Persona("Meliodas", 19));
+        listaPersonas.add(new Persona("Angel", 22));
+        listaPersonas.add(new Persona("Zeldris", 66));
+        
+        // Hacemos la ordenacion de menor a mayor
+        
+        Collections.sort(listaPersonas, new Comparator<Persona>() {
+            @Override
+            public int compare (Persona p1, Persona p2) {
+                /* 
+                    Si quisiesemos que lo ordenase de mayor a menor, cambiariamos
+                    p1 por p2 y p2 por p1
+                */
+                return new Integer(p1.getEdad()).compareTo(p2.getEdad());
+            }
+        });
+        
+        for (Persona p : listaPersonas) {
+            System.out.format("La persona %s tiene %d años%n", p.getNombre(), p.getEdad());
+        }
+        
+        System.out.println("-----------------------------------------");
+        
+        // En el caso de que queramos ordenarlo por nombre
+        
+        Collections.sort(listaPersonas, new Comparator<Persona>(){
+           @Override
+           public int compare (Persona p1, Persona p2) {
+               return p1.getNombre().compareToIgnoreCase(p2.getNombre());
+               //Si no queremos que ordene independientemente de mayusculas y minusculas, usamos lo siguiente
+               //return p1.getNombre().compareTo(p2.getNombre());
+           }
+        });
+        
+        for (Persona p : listaPersonas) {
+            System.out.format("La persona %s tiene %d años%n", p.getNombre(), p.getEdad());
+        }
+        
+        System.out.println("-----------------------------------------");
+        
+        /*
+            Ahora bien, esto es siempre en caso de que no queramos modificar
+            el objeto Persona, sin embargo, se puede realizar comparaciones
+            dentro del propio objeto de esta manera:
+        */
+        
+        // Creamos un objeto Pokemon
+        
+        // Añadimos unos cuantos Pokemon
+        
+        List<Pokemon> listaPokemon = new ArrayList<>();
+        listaPokemon.add(new Pokemon("Mew", 10));
+        listaPokemon.add(new Pokemon("Bulbasaur", 5));
+        listaPokemon.add(new Pokemon("Arceus", 100));
+        listaPokemon.add(new Pokemon("Celebi", 30));
+        
+        for (Pokemon p : listaPokemon) {
+            System.out.format("El pokemon %s tiene nivel %d%n", p.getNombre(), p.getNivel());
+        }
+        
+        System.out.println();
+        
+        // Los ordenamos
+        
+        Collections.sort(listaPokemon);
+        for (Pokemon p : listaPokemon) {
+            System.out.format("El pokemon %s tiene nivel %d%n", p.getNombre(), p.getNivel());
+        }
+        
+        System.out.println("-----------------------------------------");
         
     }
     
@@ -606,7 +699,7 @@ public class Listas {
         //pruebaArrays();
         
         //Pruebas con listas
-        //pruebaListas();
+        pruebaListas();
         
         //Pruebas con Set
         //pruebaSet();
@@ -624,7 +717,7 @@ public class Listas {
         //pruebaColasPrioridad();
         
         //Pruebas Pilas
-        pruebaPilas();
+        //pruebaPilas();
     }
     
     public static void main(String[] args) {
